@@ -8,7 +8,7 @@ const prodConfig = {
     mode: 'production',
 
     entry: {
-        main: './src/server/app.tsx',
+        main: './src/server/index.ts',
     },
 
     externals: [nodeExternales()],

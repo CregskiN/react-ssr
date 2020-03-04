@@ -1,6 +1,6 @@
-# sse的路由
+# sse 的路由
 
-## server的路由
-```jsx
-<StaticRouter />
-```
+## server 的路由
+
+问题：
+1. 
