@@ -1,24 +1,23 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import ReactDom from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import { createStore, applyMiddleware } from "redux";
+import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 
-const reducer = (state = { name: 'dell' }, action: any) => {
-    return state;
-}
-
-const store = createStore(reducer, applyMiddleware(thunk));
-
-import Routes from '../Routes';
+import getStore from '../store';
+import routes from '../Routes';
 
 
-const App: () => JSX.Element = () => {
+const App: React.FC = () => {
     return (
-        <Provider store={store}>
+        <Provider store={getStore()}>
             <BrowserRouter>
-                {Routes}
+                <Fragment>
+                    {
+                        routes.map(route => {
+                            return <Route {...route} />
+                        })
+                    }
+                </Fragment>
             </BrowserRouter>
         </Provider>
     )

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header';
 
-const Login: () => JSX.Element = () => {
+const Login: React.FC = () => {
 
     return (
         <div>

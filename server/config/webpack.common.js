@@ -1,10 +1,14 @@
 
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 
 
 module.exports = {
 
+    mode: 'production',
+
     target: 'node',
+
+    devtool: 'cheap-module-source-map',
 
     module: {
         rules: [{
@@ -20,12 +24,7 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.js']
     },
 
-    plugins: [
-        new CleanWebpackPlugin({
-            verbose: true, // 打印删除信息
-            // cleanOnceBeforeBuildPatterns: ['build']
-        })
-    ],
+    
 
     // optimization: {
     //     splitChunks: {
