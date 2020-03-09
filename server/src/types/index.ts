@@ -1,4 +1,3 @@
-import React from 'react';
 import { Store } from 'redux';
 import { DefaultRootState } from 'react-redux';
 import { RouteConfig } from 'react-router-config';
@@ -26,12 +25,7 @@ export interface ResponseResult {
     data: ListItem[];
 }
 
-export interface ChangeHomeListAction {
-    type: 'change_home_list';
-    payload: {
-        list: ListItem[]
-    }
-}
+export * from './actionTypes';
 
 export interface RouteType extends RouteConfig {
     loadData?: (store: Store) => any,

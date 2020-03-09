@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Store } from 'redux';
 import Header from '../../components/Header';
 import { actionCreators } from './store'
-import { HomeState, ChangeHomeListAction } from '../../types';
+import { HomeState } from '../../types';
 
 
 const Home: React.FC = () => {
@@ -13,7 +13,7 @@ const Home: React.FC = () => {
         name,
         newsList
     } = home;
-
+    
     useEffect(() => {
         dispatch(actionCreators.getHomeList());
     }, []);

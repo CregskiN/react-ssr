@@ -3,37 +3,18 @@ import { Request } from 'express';
 import { Provider } from 'react-redux'
 import { renderToString } from 'react-dom/server';
 import { StaticRouter, Route } from 'react-router-dom';
-import { matchRoutes } from 'react-router-config';
+import { Store } from 'redux';
 
-import getStore from '../store';
-import routes from '../Routes';
 import { RouteType } from '../types';
 
 
 /**
- * server渲染
+ * 
  * @param req 
+ * @param store getStore创建
+ * @param routes Router.ts
  */
-async function render(req: Request) {
-
-	const store = getStore();
-
-	// 路由匹配
-	const matchedRoutes = matchRoutes(routes, req.path)
-
-	// 让matchedRoutes内所有路由的loadData(异步家在)执行一次
-	const promises: any[] = [];
-
-	matchedRoutes.forEach(item => {
-		const route: RouteType = item.route;
-		if(route.loadData){
-			promises.push(route.loadData(store));
-		}
-	})
-
-	await Promise.all(promises);
-
-	console.log(store.getState());
+async function render(req: Request, store: Store, routes: RouteType[]) {
 
 	const content = renderToString(
 		<Provider store={store}>
@@ -57,6 +38,11 @@ async function render(req: Request) {
 				<body>
 					<div id='root'>${content}</div>
 				</body>
+				<script>
+					window.context = {
+						state: ${JSON.stringify(store.getState())}
+					}
+				</script>
 			<script src='/index.js'></script>
 		</html>
     `)

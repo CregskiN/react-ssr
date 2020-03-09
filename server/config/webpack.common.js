@@ -4,11 +4,12 @@
 
 module.exports = {
 
-    mode: 'production',
+    // mode: 'production',
+    mode: 'development',
 
     target: 'node',
 
-    devtool: 'cheap-module-source-map',
+    // devtool: 'cheap-module-source-map',
 
     module: {
         rules: [{

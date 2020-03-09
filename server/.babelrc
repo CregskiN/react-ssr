@@ -6,7 +6,11 @@
         "modules": false,
         "useBuiltIns": "usage",
       //   "targets": {},
-        "corejs": 3
+        "corejs": 3,
+        "targets": {
+          "chrome": "58",
+          "ie": "11"
+        }
       }
     ],
     "@babel/preset-react",
