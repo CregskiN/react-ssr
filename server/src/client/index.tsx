@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import ReactDom from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import { getClientStore } from '../store';
@@ -12,13 +12,13 @@ const App: React.FC = () => {
     return (
         <Provider store={store}>
             <BrowserRouter>
-                <Switch>
+                <Fragment>
                     {
                         routes.map(route => {
                             return <Route {...route} />
                         })
                     }
-                </Switch>
+                </Fragment>
             </BrowserRouter>
         </Provider>
     )

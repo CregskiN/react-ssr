@@ -5,7 +5,6 @@
       {
         "modules": false,
         "useBuiltIns": "usage",
-      //   "targets": {},
         "corejs": 3,
         "targets": {
           "chrome": "58",

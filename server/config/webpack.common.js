@@ -10,6 +10,7 @@ module.exports = {
     target: 'node',
 
     // devtool: 'cheap-module-source-map',
+    devtool: 'cheap-module-inline-source-map',
 
     module: {
         rules: [{
