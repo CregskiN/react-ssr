@@ -3,27 +3,22 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { RootState, HeaderState } from '../../types';
 import { actionCreators } from './store';
+// import './index.css';
 
-
-const Header = () => {
+const Header: React.FC = () => {
     const dispatch = useDispatch();
-    const headerState = useSelector<RootState, HeaderState>(state => {return state.header}, shallowEqual)
+    const headerState = useSelector<RootState, HeaderState>(state => { return state.header }, shallowEqual)
 
     const {
         isLogin,
     } = headerState
 
-    console.log(isLogin);
-    
-
     const handleLogin = () => {
-        console.log('asd');
-        
-        dispatch(actionCreators.login())
+        dispatch(actionCreators.login());
     }
 
     const handleLogout = () => {
-        dispatch(actionCreators.logout())
+        dispatch(actionCreators.logout());
     }
 
     return (
@@ -34,11 +29,11 @@ const Header = () => {
             {
                 isLogin ?
                     <Fragment>
-                        <Link to='/login'>翻译</Link>
+                        <Link to='/translation'>翻译列表</Link>
                         <br />
-                        <div onClick={handleLogout}>退出</div>
+                        <div className='click' onClick={handleLogout}>退出</div>
                     </Fragment>
-                    : <div onClick={handleLogin}>登陆</div>
+                    : <div className='click' onClick={handleLogin}>登陆</div>
             }
         </div >
     )

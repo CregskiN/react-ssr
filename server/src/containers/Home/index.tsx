@@ -20,6 +20,11 @@ const Home: React.FC = () => {
         }
     }, []);
 
+    const handleChangeName = () => {
+        dispatch(actionCreators.changeName())
+    }
+
+
     const getList = () => {
         return newsList.map((item) => {
             return <div key={item.id}>{`${item.id}  ${item.title}`}</div>
@@ -28,7 +33,7 @@ const Home: React.FC = () => {
 
     return (
         <div>
-            <div>{name}</div>
+            <div onClick={handleChangeName}>{name}</div>
             {getList()}
             <button onClick={() => { console.log('on click') }}>click</button>
         </div>

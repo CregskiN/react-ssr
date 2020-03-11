@@ -1,7 +1,7 @@
 import { ChangeIsLoginAction, HeaderState } from '../../../types';
 
 const defaultState: HeaderState = {
-    isLogin: false,
+    isLogin: true,
 }
 
 export default (state = defaultState, action: any) => {
@@ -11,11 +11,10 @@ export default (state = defaultState, action: any) => {
             const {
                 isLogin
             } = thisAction.payload;
-            const newState = state; 
-            newState.isLogin = isLogin;
-            console.log(newState);
-            
-            return newState;
+            return {
+                ...state,
+                isLogin
+            };
         }
 
         default:

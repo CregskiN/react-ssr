@@ -18,7 +18,16 @@ export default (state = defaultState, action: any) => {
             return newState;
         }
 
+        case 'change_name': {
+            const { name } = action.payload;
+            return {
+                ...state,
+                name
+            }
+        }
+
         default:
             return state;
     }
 }
+

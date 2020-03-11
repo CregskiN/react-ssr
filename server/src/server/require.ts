@@ -1,9 +1,17 @@
 import axios from 'axios';
+import { Request } from 'express';
 
-const instance = axios.create({
-    baseURL: 'http://47.95.113.63/ssr'
-})
+import config from '../../config/config';
 
-// /ssr/api/isLogin.json?
-
-export default instance;
+const createInstance = (req: Request) => {
+    return axios.create({
+        baseURL: 'http://47.95.113.63/ssr',
+        headers: {
+            cookie: req.get('cookie') || ''
+        },
+        params: {
+            secret: config.secret
+        }
+    })
+}
+export default createInstance;

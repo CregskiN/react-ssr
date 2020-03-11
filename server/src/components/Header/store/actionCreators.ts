@@ -17,9 +17,7 @@ export const getHeaderInfo = () => {
         return axiosInstance.get('/api/isLogin.json?secret=PP87ANTIPIRATE')
             .then(res => {
                 const isLogin: boolean = res.data?.data.login;
-                if (isLogin) {
-                    dispatch(changeIsLoginAction(isLogin))
-                }
+                dispatch(changeIsLoginAction(isLogin))
             }).catch(err => {
                 console.log(err);
             })
@@ -28,24 +26,20 @@ export const getHeaderInfo = () => {
 
 export const login = () => {
     return (dispatch: Dispatch, getState: any, axiosInstance: AxiosInstance) => {
-        return axiosInstance.get('/api/login.json?secret=PP87ANTIPIRATE')
+        return axiosInstance.get('/api/login.json')
             .then(res => {
                 const isLogin: boolean = res.data?.data.login;
-                if (isLogin) {
-                    dispatch(changeIsLoginAction(isLogin))
-                }
+                dispatch(changeIsLoginAction(true))
             })
     }
 }
 
 export const logout = () => {
     return (dispatch: Dispatch, getState: any, axiosInstance: AxiosInstance) => {
-        return axiosInstance.get('/api/logout.json?secret=PP87ANTIPIRATE')
+        return axiosInstance.get('/api/logout.json')
             .then(res => {
                 const isLogout: boolean = res.data?.data.logout;
-                if (isLogout) {
-                    dispatch(changeIsLoginAction(!isLogout))
-                }
+                dispatch(changeIsLoginAction(false))
             })
     }
 }

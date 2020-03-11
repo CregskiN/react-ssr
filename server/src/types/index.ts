@@ -1,6 +1,7 @@
 import { Store } from 'redux';
 import { DefaultRootState } from 'react-redux';
 import { RouteConfig } from 'react-router-config';
+import { Action } from 'redux';
 
 export interface HeaderState {
     isLogin: boolean
@@ -8,31 +9,36 @@ export interface HeaderState {
 
 export interface HomeState {
     name: string;
-    newsList: ListItem[]
+    newsList: NewsListItem[]
 }
 
 export interface RootState extends DefaultRootState {
     header: HeaderState;
     home: HomeState;
-}
-
-
-interface Action<T> {
-    type: T;
+    translation: TranslationState;
 }
 
 export interface ActionType<T> extends Action<string> {
     payload: T;
 }
 
-export interface ListItem {
+export interface NewsListItem {
     id: number;
     title: string;
 }
 
+export interface TranslationsListItem {
+    id: number;
+    title: string;
+}
+
+export interface TranslationState {
+    translationsList: TranslationsListItem[]
+}
+
 export interface ResponseResult {
     success: boolean;
-    data: ListItem[];
+    data: NewsListItem[] | TranslationsListItem[];
 }
 
 export * from './actionTypes';
