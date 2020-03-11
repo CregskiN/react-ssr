@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { renderToString } from 'react-dom/server';
 import { StaticRouter, Route } from 'react-router-dom';
 import { Store } from 'redux';
+import { renderRoutes } from 'react-router-config';
 
 import { RouteType } from '../types';
 
@@ -21,9 +22,11 @@ async function render(req: Request, store: Store, routes: RouteType[]) {
 			<StaticRouter location={req.path} context={{}}>
 				<Fragment>
 					{
-						routes.map(route => {
-							return <Route {...route} />
-						})
+						// 一级路由渲染
+						renderRoutes(routes)
+						// routes.map(route => {
+						// 	return <Route {...route} />
+						// })
 					}
 				</Fragment>
 			</StaticRouter>

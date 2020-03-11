@@ -1,21 +1,23 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch,shallowEqual } from 'react-redux';
 import { Store } from 'redux';
-import Header from '../../components/Header';
+
 import { actionCreators } from './store'
-import { HomeState } from '../../types';
+import { RootState, HomeState,HeaderState } from '../../types';
 
 
 const Home: React.FC = () => {
-    const home = useSelector<any, HomeState>(state => { return state.home });
     const dispatch = useDispatch();
+    const homeState = useSelector<RootState, HomeState>(state => { return state.home },shallowEqual);
     const {
         name,
         newsList
-    } = home;
-    
+    } = homeState;
+
     useEffect(() => {
-        dispatch(actionCreators.getHomeList());
+        if (newsList.length === 0) {
+            dispatch(actionCreators.getHomeList());
+        }
     }, []);
 
     const getList = () => {
@@ -26,9 +28,8 @@ const Home: React.FC = () => {
 
     return (
         <div>
-            <Header />
             <div>{name}</div>
-            { getList() }
+            {getList()}
             <button onClick={() => { console.log('on click') }}>click</button>
         </div>
     )

@@ -1,9 +1,10 @@
-import axios from 'axios';
 import { Dispatch } from 'redux';
 
+import { AxiosInstance } from 'axios';
 import { ListItem, ChangeHomeListAction, ResponseResult } from '../../../types';
 
-export const changeHomeList = (list: ListItem[]) => {
+
+export const changeHomeListAction = (list: ListItem[]) => {
     const action: ChangeHomeListAction = {
         type: 'change_home_list',
         payload: {
@@ -17,11 +18,11 @@ export const changeHomeList = (list: ListItem[]) => {
  * axios GET列表
  */
 export const getHomeList = () => {
-    return (dispatch: Dispatch) => {
-        return axios.get('http://47.95.113.63/ssr/api/news.json?secret=PP87ANTIPIRATE')
+    return (dispatch: Dispatch, getState: any, axiosInstance: AxiosInstance) => {
+        return axiosInstance.get('/api/news.json?secret=PP87ANTIPIRATE')
             .then(res => {
                 const responseResult: ResponseResult = res.data;
-                const action = changeHomeList(responseResult?.data);
+                const action = changeHomeListAction(responseResult?.data);
                 dispatch(action);
             }).catch(err => {
                 console.log(err);
