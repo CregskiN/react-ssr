@@ -3,7 +3,7 @@ import { RouteConfig } from 'react-router-config';
 import App, { loadData as appLoadData } from './App';
 import Home, { loadData as homeLoadData } from './containers/Home/index';
 import Translation, { loadData as translationLoadData } from './containers/Translation/index';
-
+import NotFound from './containers/NotFound';
 
 /**
  * 多级路由的写法
@@ -26,6 +26,8 @@ const routes: RouteConfig[] = [{
             exact: true,
             loadData: translationLoadData,
             key: 'login',
+        }, {
+            component: NotFound,
         }
     ],
     key: 'App'

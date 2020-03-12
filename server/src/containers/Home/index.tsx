@@ -1,18 +1,16 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch,shallowEqual } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { Store } from 'redux';
 
 import { actionCreators } from './store'
-import { RootState, HomeState,HeaderState } from '../../types';
+import { RootState, HomeState } from '../../types';
 
+import * as styles from './style.css';
 
 const Home: React.FC = () => {
     const dispatch = useDispatch();
-    const homeState = useSelector<RootState, HomeState>(state => { return state.home },shallowEqual);
-    const {
-        name,
-        newsList
-    } = homeState;
+    const homeState = useSelector<RootState, HomeState>(state => { return state.home }, shallowEqual);
+    const { name, newsList } = homeState;
 
     useEffect(() => {
         if (newsList.length === 0) {
@@ -35,7 +33,7 @@ const Home: React.FC = () => {
         <div>
             <div onClick={handleChangeName}>{name}</div>
             {getList()}
-            <button onClick={() => { console.log('on click') }}>click</button>
+            <button className={`${styles.btn}`} onClick={() => { console.log('on click') }}>click</button>
         </div>
     )
 };

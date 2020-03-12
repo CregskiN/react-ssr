@@ -14,7 +14,7 @@ const changeIsLoginAction: (isLogin: boolean) => ChangeIsLoginAction = (isLogin)
 
 export const getHeaderInfo = () => {
     return (dispatch: Dispatch, getState: any, axiosInstance: AxiosInstance) => {
-        return axiosInstance.get('/api/isLogin.json?secret=PP87ANTIPIRATE')
+        return axiosInstance.get('/api/isLogin.json')
             .then(res => {
                 const isLogin: boolean = res.data?.data.login;
                 dispatch(changeIsLoginAction(isLogin))
@@ -29,7 +29,7 @@ export const login = () => {
         return axiosInstance.get('/api/login.json')
             .then(res => {
                 const isLogin: boolean = res.data?.data.login;
-                dispatch(changeIsLoginAction(true))
+                dispatch(changeIsLoginAction(isLogin))
             })
     }
 }
@@ -40,6 +40,8 @@ export const logout = () => {
             .then(res => {
                 const isLogout: boolean = res.data?.data.logout;
                 dispatch(changeIsLoginAction(false))
+            }).catch(err => {
+                console.log(err);
             })
     }
 }

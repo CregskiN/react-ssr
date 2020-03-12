@@ -6,7 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const commonConfig = require('./webpack.common.js');
 
 const prodConfig = {
-    
+
 
     entry: {
         main: './src/server/index.ts',
@@ -14,7 +14,21 @@ const prodConfig = {
 
     externals: [nodeExternales()],
 
-    
+    module: {
+        rules: [{
+            test: /\.css?$/,
+            exclude: /node_modules/,
+            use: ['isomorphic-style-loader', {
+                loader: 'css-loader',
+                options: {
+                    importLoaders: 1,
+                    modules: {
+                        localIdentName: '[name]_[local]-[hash:base64:5]',
+                    }
+                }
+            }, 'postcss-loader']
+        }]
+    },
 
     plugins: [
         new CleanWebpackPlugin({

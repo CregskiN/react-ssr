@@ -5,7 +5,7 @@ import config from '../../config/config';
 
 const createInstance = (req: Request) => {
     return axios.create({
-        baseURL: 'http://47.95.113.63/ssr',
+        baseURL: 'http://localhost:7001/ssr',
         headers: {
             cookie: req.get('cookie') || ''
         },

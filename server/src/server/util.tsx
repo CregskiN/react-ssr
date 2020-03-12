@@ -1,13 +1,12 @@
 import React, { Fragment } from 'react';
+import { Provider } from 'react-redux';
 import { Request } from 'express';
-import { Provider } from 'react-redux'
 import { renderToString } from 'react-dom/server';
-import { StaticRouter, Route } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom';
 import { Store } from 'redux';
 import { renderRoutes } from 'react-router-config';
 
-import { RouteType } from '../types';
-
+import { RouteType, Context } from '../types';
 
 /**
  * 
@@ -15,11 +14,13 @@ import { RouteType } from '../types';
  * @param store getStore创建
  * @param routes Router.ts
  */
-async function render(req: Request, store: Store, routes: RouteType[]) {
+async function render(req: Request, store: Store, routes: RouteType[], context: Context) {
+
+
 
 	const content = renderToString(
 		<Provider store={store}>
-			<StaticRouter location={req.path} context={{}}>
+			<StaticRouter location={req.path} context={context}>
 				<Fragment>
 					{
 						// 一级路由渲染

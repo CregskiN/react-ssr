@@ -2,6 +2,7 @@ import { Store } from 'redux';
 import { DefaultRootState } from 'react-redux';
 import { RouteConfig } from 'react-router-config';
 import { Action } from 'redux';
+import { StaticRouterContext } from 'react-router'
 
 export interface HeaderState {
     isLogin: boolean
@@ -45,5 +46,10 @@ export * from './actionTypes';
 
 export interface RouteType extends RouteConfig {
     loadData?: (store: Store) => any,
+}
+
+
+export interface Context extends StaticRouterContext {
+    NOT_FOUND?: boolean;
 }
 

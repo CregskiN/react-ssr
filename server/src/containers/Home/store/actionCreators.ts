@@ -25,7 +25,7 @@ export const getHomeList = () => {
                 const action = changeHomeListAction(responseResult?.data);
                 dispatch(action);
             }).catch(err => {
-                console.log(err);
+                console.log('API geiHomeList 数据获取出错',err);
             })
     }
 }

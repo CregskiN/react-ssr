@@ -14,8 +14,6 @@ const Translation: React.FC = () => {
         translationsList
     } = translationState;
 
-    console.log(isLogin);
-
     useEffect(() => {
         if (translationsList.length === 0) {
             dispatch(actionCreators.getTranslationsList())

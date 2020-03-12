@@ -10,12 +10,10 @@ export default (state = defaultState, action: any) => {
         case 'change_home_list': {
             const thisAction: ChangeHomeListAction = action;
             const { list } = thisAction.payload;
-
-            const newState = {
+            return {
                 ...state,
                 newsList: list
-            }
-            return newState;
+            };
         }
 
         case 'change_name': {
