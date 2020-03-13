@@ -49,7 +49,8 @@ export interface RouteType extends RouteConfig {
 }
 
 
-export interface Context extends StaticRouterContext {
+export interface StaticRouterContextExtends extends StaticRouterContext {
     NOT_FOUND?: boolean;
+    css?: string[];
 }
 

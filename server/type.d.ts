@@ -4,3 +4,5 @@ declare module '*.jpg' {
 }
 
 declare module '*.css';
+
+declare module 'isomorphic-style-loader/useStyles';

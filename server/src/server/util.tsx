@@ -5,8 +5,9 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { Store } from 'redux';
 import { renderRoutes } from 'react-router-config';
+import { Helmet } from 'react-helmet';
 
-import { RouteType, Context } from '../types';
+import { RouteType, StaticRouterContextExtends } from '../types';
 
 /**
  * 
@@ -14,9 +15,7 @@ import { RouteType, Context } from '../types';
  * @param store getStore创建
  * @param routes Router.ts
  */
-async function render(req: Request, store: Store, routes: RouteType[], context: Context) {
-
-
+async function render(req: Request, store: Store, routes: RouteType[], context: StaticRouterContextExtends) {
 
 	const content = renderToString(
 		<Provider store={store}>
@@ -34,10 +33,20 @@ async function render(req: Request, store: Store, routes: RouteType[], context: 
 		</Provider>
 	);
 
+	const helmet = Helmet.renderStatic();
+
+	const cssStr = context.css?.length ? context.css.join('\n') : '';
+
+	console.log(cssStr);
+	
+
+
 	return (`
 		<html>
 			<head>
-				<title>ssr</title>
+				${helmet.title.toString()}
+				${helmet.meta.toString()}
+				<style>${cssStr}</style>
 			</head>
 				<body>
 					<div id='root'>${content}</div>

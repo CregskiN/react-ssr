@@ -4,8 +4,6 @@ const merge = require('webpack-merge');
 const commonConfig = require('./webpack.common.js');
 
 const prodConfig = {
-
-
     entry: {
         index: './src/client/index.tsx',
     },
@@ -21,7 +19,6 @@ const prodConfig = {
                     modules: {
                         localIdentName: '[name]_[local]-[hash:base64:5]',
                     }
-
                 }
             }, 'postcss-loader']
         }]

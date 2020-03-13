@@ -19,11 +19,29 @@ module.exports = {
             use: [
                 'babel-loader'
             ],
-        }]
+        },{
+            test: /\.(png|jp?g|gif)$/,
+            use: [{
+                loader: 'url-loader',
+                options: {
+                    name: '[name].[ext]', // placeholder 占位符
+                    outputPath: 'images/',
+                    limit: 2048
+                }
+            }],
+        }, {
+            test: /\.eot|ttf|svg|woff$/,
+            use: [{
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]'
+                }
+            }]
+        },]
     },
 
     resolve: {
-        extensions: ['.tsx', '.ts', '.js','.css']
+        extensions: ['.tsx', '.ts', '.js','.css', '.png']
     },
 
     

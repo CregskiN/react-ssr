@@ -4,19 +4,21 @@ import { renderRoutes, RouteConfig } from 'react-router-config';
 
 import Header from './components/Header/';
 import { actionCreators } from './components/Header/store';
-import { HeaderState } from './types';
+import { HeaderState, StaticRouterContextExtends } from './types';
 
 interface AppProps extends RouteConfig {
-    route?: RouteConfig
+    route?: RouteConfig,
+    staticContext?: StaticRouterContextExtends
 }
 
 const App: React.FC<AppProps> = (props) => {
     const {
-        route
+        route,
+        staticContext
     } = props;
     return (
         <Fragment>
-            <Header />
+            <Header staticContext={staticContext}/>
             {
                 // 二级路由渲染
                 renderRoutes(route?.routes)

@@ -1,4 +1,13 @@
-.btn {
+.home_container {
+    margin: 5px 10px;
+    
+}
+
+.home_listItem {
+    margin: 5px 0;
+}
+
+.home_btn {
     width: 100px;
     height: 60px;
 }

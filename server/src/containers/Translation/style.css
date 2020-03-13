@@ -1,0 +1,14 @@
+.translation_container {
+    width: 800px;
+    height: 600px;
+    margin: 5px 10px;
+    /* background: url('./bg.png'); */
+}
+
+.translation_item {
+    margin: 5px;
+}
+.translation_item:hover {
+    cursor: pointer;
+    color: #eee;
+}

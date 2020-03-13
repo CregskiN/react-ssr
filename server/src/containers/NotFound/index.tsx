@@ -1,10 +1,10 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 
-import { Context } from '../../types';
+import { StaticRouterContextExtends } from '../../types';
 
 
-const NotFound: React.FC<RouteComponentProps<any, Context, any>> = (props) => {
+const NotFound: React.FC<RouteComponentProps<any, StaticRouterContextExtends, any>> = (props) => {
     const { staticContext } = props;
     staticContext && (staticContext.NOT_FOUND = true);
     return (

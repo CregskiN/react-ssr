@@ -1,5 +1,21 @@
-.click {
+.header_container {
+    width: 500px;
+    height: 30px;
+    margin: 5px 10px;
+}
+
+.header_item {
+    display: inline-block;
+    padding: 3px 3px;
+    margin: 0 4px;
+    color: #000;
+    text-decoration: none;
     border-radius: 5px;
     border: 1px solid #eee;
-    cursor:pointer;
+}
+
+
+.header_item:hover {
+    cursor: pointer;
+    color: #999;
 }

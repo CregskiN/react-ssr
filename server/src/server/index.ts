@@ -4,7 +4,7 @@ import proxy from 'express-http-proxy';
 import { catchError } from '../middlewares/catchError';
 import { render } from './util';
 import { getStore } from '../store';
-import { RouteType, Context } from '../types';
+import { RouteType, StaticRouterContextExtends } from '../types';
 import routes from '../Routes';
 import { matchRoutes } from 'react-router-config';
 
@@ -16,18 +16,17 @@ app.use(express.static('public')); // 如果请求静态文件，express会从pu
 /**
  * 对/api开头的http，代理到http://47.95.113.63
  */
-app.use('/api', proxy('http://localhost:7001', {
+app.use('/api', proxy('http://localhost:7001', { 
 	proxyReqPathResolver: function (req) {
 		return '/ssr/api' + req.url;
 	}
 }));
 
-
+ 
 app.get('*', async (req: Request, res: Response) => {
 	const store = getStore(req);
 	// 路由匹配
 	const matchedRoutes = matchRoutes(routes, req.path);
-
 
 	// 让matchedRoutes内所有路由的loadData(异步加载)执行一次
 	const promises: any[] = [];
@@ -39,8 +38,9 @@ app.get('*', async (req: Request, res: Response) => {
 	})
 	await Promise.all(promises);
 
-	const context: Context = {
-		NOT_FOUND: false
+	const context: StaticRouterContextExtends = {
+		NOT_FOUND: false,
+		css: []
 	}
 
 	const ssrHTML = await render(req, store, routes, context);
